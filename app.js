@@ -370,7 +370,7 @@ function openForm(type,id=null,eventId=null) {
     title = id ? "Modifica ospite" : "Nuovo ospite";
     body = `<form id="modal-form" class="form-grid">
       ${field("Nome","name",e.name||"")}${field("Contatto","contact",e.contact||"")}
-      ${checkboxesField("Eventi / Talk sponsorizzati", "event_ids", e.event_ids||(eventId?[eventId]:[]), state.events.map(x=>[x.id,x.name]))}
+      ${selectField("Evento / Talk","event_id",e.event_id||eventId||"",[["","Nessuno"],...state.events.map(x=>[x.id,x.name])])}
       ${selectField("Stato","status",e.status||"da_contattare",[["da_contattare","Da contattare"],["in_attesa","In attesa"],["confermato","Confermato"],["rifiutato","Rifiutato"]])}
       ${field("Contattato da","contacted_by",e.contacted_by||"")}${field("Data contatto","contacted_at",e.contacted_at||"","date")}
       <div class="field full">${field("Note","notes",e.notes||"")}</div>

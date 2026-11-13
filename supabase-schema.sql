@@ -24,7 +24,7 @@ create table if not exists public.guests (
   id uuid primary key default gen_random_uuid(),
   name text not null,
   contact text,
-  event_ids uuid[] default '{}',
+  event_id uuid references public.events(id) on delete set null,
   status text not null default 'da_contattare',
   contacted_by text,
   contacted_at date,
@@ -52,7 +52,7 @@ create table if not exists public.sponsors (
 create table if not exists public.tasks (
   id uuid primary key default gen_random_uuid(),
   title text not null,
-  event_ids uuid[] default '{}',
+  event_id uuid references public.events(id) on delete set null,
   assignee text,
   due_date date,
   priority text not null default 'media',
